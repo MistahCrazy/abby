@@ -1,0 +1,5 @@
+discord.py[voice] 
+systemd-python; platform_system == 'Linux'
+basc_py4chan
+requests
+pynacl

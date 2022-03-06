@@ -1,0 +1,43 @@
+[Unit]
+Description=Discord Bot
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=notify
+WorkingDirectory=/opt/abby
+ExecStart=/opt/abby/abby.py
+Restart=always
+RestartSec=30s
+WatchdogSec=300s
+KillMode=process
+KillSignal=SIGINT
+
+#
+# Limit resources
+#
+LimitNICE=1
+LimitNOFILE=64
+LimitMEMLOCK=128
+
+#
+# Create sandbox
+#
+User=abby 
+Group=abby
+NoNewPrivileges=true
+
+# makes /home, /root, and /run/user inaccessible
+ProtectHome=true
+
+# mounts /usr, /boot, /efi, and /etc as read-only
+ProtectSystem=full
+
+PrivateTmp=true
+PrivateDevices=true
+PrivateUsers=true
+
+StandardOutput=journal
+
+[Install]
+WantedBy=multi-user.target
