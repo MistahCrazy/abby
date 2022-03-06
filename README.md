@@ -2,9 +2,19 @@
 This is my personal Discord bot. I doubt anyone would ever have the need to
 install this. However, here are some basic directions to get started.
 
-## Install Requirements
+## Set-up Environment
+Create virtual environment:
+```bash
+git clone https://github.com/thetallguyyy/abby.git
+cd abby
+python3 -m venv ./venv
+source venv/bin/activate
 ```
+
+## Install Requirements
+```bash
 pip install -r requirements.txt
+deactivate
 ```
 
 ## Configure
