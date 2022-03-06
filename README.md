@@ -7,11 +7,11 @@ install this. However, here are some basic directions to get started.
 git clone https://github.com/thetallguyyy/abby.git
 cd abby
 python3 -m venv ./venv
-source venv/bin/activate
 ```
 
 ### Install Requirements
 ```
+source venv/bin/activate
 pip install -r requirements.txt
 deactivate
 ```
@@ -46,4 +46,5 @@ sudo systemctl enable abby
 ### Verify systemd is Working
 ```
 systemctl status abby
+sudo journalctl -u abby
 ```
