@@ -2,7 +2,7 @@
 This is my personal Discord bot. I doubt anyone would ever have the need to
 install this. However, here are some basic directions to get started.
 
-## Set-up Environment
+### Set-up Environment
 ```
 git clone https://github.com/thetallguyyy/abby.git
 cd abby
@@ -10,13 +10,13 @@ python3 -m venv ./venv
 source venv/bin/activate
 ```
 
-## Install Requirements
+### Install Requirements
 ```
 pip install -r requirements.txt
 deactivate
 ```
 
-## Configure
+### Configure
 Edit the following lines in default.config.py
 ```python
 class Client(object):
@@ -30,20 +30,20 @@ Rename default.config.py to config.py
 cp default.config.py to config.py
 ```
 
-## Verify Configuration
+### Verify Configuration
 ```
 sudo chmod +x ./abby.py
 ./abby.py
 ```
 
-## Install
+### Install
 ```
 sudo chmod +x install.sh
 sudo ./install.sh
 sudo systemctl enable abby
 ```
 
-# Verify systemd is Working
+### Verify systemd is Working
 ```
 systemctl status abby
 ```
