@@ -88,7 +88,7 @@ def get_exchange_cad(currency_from) -> str:
     value = get_exchange_rate(currency_from, 'CAD')
     return f'CA${value:,.2f}'
 
-def get_exchanges_btc(currency_from) -> GroundhogDay:
+def get_exchanges_loop(currency_from) -> GroundhogDay:
     values = GroundhogDay([
         partial(get_exchange_usd, currency_from),
         partial(get_exchange_gbp, currency_from),
