@@ -8,8 +8,8 @@ class Status(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
         self.loop = self.bot.loop
-        self.select_from = [k for k, v in currencies.items() if v['crypto'] or k == 'RUB']
-        self.select_to = [k for k, v in currencies.items() if not v['crypto'] and k != 'RUB']
+        self.select_from = tuple(k for k, v in currencies.items() if v['crypto'] or k == 'RUB')
+        self.select_to = tuple(k for k, v in currencies.items() if not v['crypto'] and k != 'RUB')
 
         self.random_status.start()
 
