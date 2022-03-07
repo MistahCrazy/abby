@@ -1,12 +1,13 @@
 import discord
 from discord.ext import tasks, commands
 
-from utils.shite import get_bitcoin_list
+from utils.shite import get_exchange_loop()
 
 class Status(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
         self.loop = self.bot.loop
+        self.ruble_list = iter()
         self.bitcoin_list = iter(get_bitcoin_list())
         self.random_status.start()
 
