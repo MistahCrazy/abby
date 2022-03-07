@@ -96,9 +96,9 @@ def get(url, **params):
     return http.json()
 
 def swap_punc(text: str) -> str:
-    return text.replace('.', '|').replace(',', '.').replace('|', ',')
+    return text.replace('.', '^_^').replace(',', '.').replace('^_^', ',')
 
-def get_exchange_rate(currency_from:str = 'BTC', currency_to: str = 'USD') -> str:
+def get_exchange_rate(currency_from: str = 'BTC', currency_to: str = 'USD') -> str:
     out = ''
 
     try:
@@ -116,4 +116,4 @@ def get_exchange_rate(currency_from:str = 'BTC', currency_to: str = 'USD') -> st
     except KeyError:
         raise ValueError(f'unknown currency code "{currency_to}"')
 
-    return out
+    return out if val > 0 else '<' + out
