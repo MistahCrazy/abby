@@ -103,6 +103,6 @@ def get_exchanges_loop(currency_from) -> GroundhogDay:
     return values
 
 if __name__ == '__main__':
-    for i in get_exchanges_btc('BTC'):
+    for i in get_exchanges_loop('BTC'):
        print(i)
        time.sleep(0.5)
