@@ -2,25 +2,28 @@ import discord
 from discord.ext import tasks, commands
 from random import choice
 
-from utils.exchange import get_exchange_loop
+from utils.exchange import get_exchange_rate, currencies
 
 class Status(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
         self.loop = self.bot.loop
-        self.exchange_loops = (
-            iter(get_exchange_loop('RUB', '₽ at ')),
-            iter(get_exchange_loop('BTC', '₿ at '))
-        )
+        self.select_from = [k for k, v in currencies.items() if v['crypto'] or k == 'RUB']
+        self.select_to = [k for k, v in currencies.items() if not v['crypto'] and k != 'RUB']
+
         self.random_status.start()
 
     def cog_unload(self):
         self.random_status.stop()
 
-    @tasks.loop(minutes=5)
+    @tasks.loop(minutes=2, seconds=30)
     async def random_status(self):
+        sf = choice(self.select_from)
+        st = choice(self.select_to)
+        val = get_exchange_rate(sf, st)
+
         activity = discord.Activity(
-            name=next(choice(self.exchange_loops)),
+            name=f'{currencies[sf]["symbol"]} at {val}',
             type=discord.ActivityType.watching
         )
 
