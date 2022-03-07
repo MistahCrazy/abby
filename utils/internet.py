@@ -1,3 +1,4 @@
+import hashlib
 import pathlib
 import mimetypes
 from io import BytesIO
@@ -5,6 +6,9 @@ from urllib import request
 from urllib.parse import urlparse
 from urllib.request import Request
 from functools import cached_property
+
+class FileTooLarge(Exception):
+    pass
 
 class Download(BytesIO):
     def __init__(self, url, *, max_size=0):
@@ -21,6 +25,7 @@ class Download(BytesIO):
         self.name = file_path.name
         self.suffix = file_path.suffix
         self.mime = self.request.info().get_content_type()
+        self._md5 = hashlib.md5()
 
         if not self.suffix:
             self.suffix = mimetypes.guess_extension(self.mime)
@@ -44,14 +49,21 @@ class Download(BytesIO):
             file_size += chunk_size
 
             if file_size > self.max_size > 0:
-                raise IOError('file size exceeds limit')
+                raise FileTooLarge('file size exceeds limit')
 
             if chunk := self.request.read(chunk_size):
                 super().write(chunk)
+                self._md5.update(chunk)
+
             else:
                 break
 
         self.seek(0)
+
+    def save(self, path: str|pathlib.Path):
+        with open(path, mode='wb') as fp:
+            fp.write(self.read())
+            self.seek(0) # be kind please rewind
 
     @cached_property
     def is_media(self):
@@ -64,3 +76,28 @@ class Download(BytesIO):
     @cached_property
     def is_video(self):
         return 'video' in self.mime or 'image/gif' in self.mime
+
+    @property
+    def md5(self):
+        return str(self._md5.hexdigest())
+
+if __name__ == '__main__':
+    import time
+
+    url = 'https://upload.wikimedia.org/wikipedia/commons/6/6a/Door_Tree_1898.png'
+    limit = 1024*8
+    done = False
+
+    while not done:
+        try:
+            with Download(url, max_size=limit) as dl:
+                dl.get()
+                print(dl.md5)
+                dl.save(f'logs/test{dl.suffix}')
+
+            done = True
+        except FileTooLarge:
+            print('File is too big!')
+
+        limit += limit
+        time.sleep(1)

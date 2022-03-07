@@ -35,7 +35,7 @@ class Status(commands.Cog):
 
         return ex
 
-    @tasks.loop(minutes=2, seconds=30)
+    @tasks.loop(minutes=3, seconds=33)
     async def random_status(self):
         cf, ct = self.get_random_exchange()
 
