@@ -17,11 +17,11 @@ class Status(commands.Cog):
         self.random_status.stop()
 
     @cached_property
-    def _exchange_from(self):
+    def _exchange_from(self) -> Tuple[str, ...]:
         return tuple(k for k, v in currencies.items() if v['crypto'] or k == 'RUB')
 
     @cached_property
-    def _exchange_to(self):
+    def _exchange_to(self) -> Tuple[str, ...]:
         return tuple(k for k, v in currencies.items() if not v['crypto'] and k != 'RUB')
 
     def get_random_exchange(self) -> Tuple[str, str]:
