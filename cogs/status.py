@@ -17,7 +17,7 @@ class Status(commands.Cog):
     def cog_unload(self):
         self.random_status.stop()
 
-    @tasks.loop(minutes=1)
+    @tasks.loop(minutes=5)
     async def random_status(self):
         activity = discord.Activity(
             name=next(choice(self.exchange_loops)),
