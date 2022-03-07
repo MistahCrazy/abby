@@ -110,7 +110,7 @@ def get_exchange_rate(currency_from:str = 'BTC', currency_to: str = 'USD') -> st
     try:
         val = round(float(val['rates'][currency_to]), 2)
         cur = currencies[currency_to]
-        out = "${:,.2f}".format(val)
+        out = "{:,.2f}".format(val)
         out = str(out) if not cur['swaped'] else swap_punc(str(out))
         out = cur['symbol'] + out if not cur['suffixed'] else out + ' ' + cur['symbol']
     except KeyError:
