@@ -2,6 +2,8 @@
 This is my personal Discord bot. I doubt anyone would ever have the need to
 install this. However, here are some basic directions to get started.
 
+Requires Python 3.10+
+
 ### Set-up Environment
 ```
 git clone https://github.com/thetallguyyy/abby.git
