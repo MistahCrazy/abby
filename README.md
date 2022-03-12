@@ -11,6 +11,7 @@ python3 -m venv ./venv
 
 ### Install Requirements
 ```
+sudo apt-get install build-essential python3-dev libsystemd-dev
 source venv/bin/activate
 pip install -r requirements.txt
 deactivate
