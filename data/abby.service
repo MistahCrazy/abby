@@ -6,7 +6,7 @@ Wants=network-online.target
 [Service]
 Type=notify
 WorkingDirectory=/opt/abby
-ExecStart=/opt/abby/abby.py
+ExecStart=/opt/abby/.venv/bin/python /opt/abby/abby.py
 Restart=always
 RestartSec=30s
 WatchdogSec=300s

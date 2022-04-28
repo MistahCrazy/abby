@@ -1,5 +1,3 @@
-#!/usr/bin/env venv/bin/python
-
 import os
 import asyncio
 import discord
