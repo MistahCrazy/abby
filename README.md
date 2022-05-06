@@ -4,33 +4,33 @@ install this. However, here are some basic directions to get started.
 
 Requires Python 3.10+
 
-### Set-up Environment
+### Set-Up Environment
 ```
 git clone https://github.com/thetallguyyy/abby.git
 cd abby
-python3 -m venv ./venv
+python3 -m venv .venv
 ```
 
 ### Install Requirements
 ```
-sudo apt-get install build-essential python3-dev libsystemd-dev
+sudo apt install build-essential python3-dev libsystemd-dev
 source venv/bin/activate
 pip install -r requirements.txt
 deactivate
 ```
 
 ### Configure
-Edit the following lines in default.config.py
-```python
-class Client(object):
-    prefix = ''
-    description = ''
-    token = ''
-```
-
 Rename default.config.py to config.py
 ```
 cp default.config.py to config.py
+```
+
+Edit the following lines in config.py
+```python
+class Client(object):
+    prefix = '' # the command prefix
+    description = '' # bot description
+    token = '' # bot api token
 ```
 
 ### Verify Configuration
