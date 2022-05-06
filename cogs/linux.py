@@ -10,8 +10,7 @@ class Linux(commands.Cog):
         self.bot = bot
         self.loop = self.bot.loop
         self.watchdog.start()
-
-    # wtf does this do exactly???
+        
     def shutdown(self):
         daemon.notify('STOPPING=1')
 
