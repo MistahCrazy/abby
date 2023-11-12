@@ -110,9 +110,3 @@ async def check_response_condition():
     #not sure if this should be uncommented or not, gives an error and still works without it so idk
     
     #await client.process_commands(message)
-
-
-
-
-
-client.run('MTE3MzI4NTI4MDkwMDQ1MjM3Mg.GrewSV.9AhrRi7_UC5LvHS9BeGZlezq8QikxLUPaeD20c')
